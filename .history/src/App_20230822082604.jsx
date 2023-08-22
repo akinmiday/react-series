@@ -7,36 +7,37 @@ import AddItem from './AddItem'
 import SearchItem from './SearchItem'
 
 const App = () => {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem("shoppinglist")) || [])
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem("shoppinglist")))
   const [newItem, setNewItem] = useState('')
   const [search, setSearch] = useState('')
 
 
   useEffect(() => {
-    localStorage.setItem("shoppinglist", JSON.stringify(items))
+    console.log(items)
   }, [items])
 
-
-
-
+  const setAndSaveItems = (newItems) => {
+    setItems(newItems)
+    localStorage.setItem("shoppinglist", JSON.stringify(newItems))
+  }
 
   const addItem = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const myNewItem = { id, checked: false, item }
     const listItems = [...items, myNewItem]
-    setItems(listItems)
+    setAndSaveItems(listItems)
   }
 
 
   const handleCheck = (id) => {
     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item)
-    setItems(listItems)
+    setAndSaveItems(listItems)
   }
 
 
   const handleDelete = (id) => {
     const listItems = items.filter((item) => item.id !== id)
-    setItems(listItems)
+    setAndSaveItems(listItems)
   }
 
 
