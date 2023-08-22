@@ -1,0 +1,8 @@
+.item svg{
+    width: 48px;
+    min-width: 48px;
+    height: 36px;
+    font-size: .5rem;
+    color: steelblue;
+    cursor: pointer;
+}
