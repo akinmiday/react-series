@@ -91,6 +91,7 @@ const App = () => {
     if (result) setFetchError(result)
   }
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!newItem) return
